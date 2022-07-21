@@ -24,6 +24,7 @@ import { Trans } from 'react-i18next';
 import LocaleService from '../services/locale.service';
 import { PresetType } from '../types/PresetType';
 import { SubCategoryType } from '../types/SubCategoryType';
+import { getIconName } from '../types/GetIconName';
 
 const { Title, Paragraph } = Typography;
 const { Grid, Meta } = Card;
@@ -69,7 +70,7 @@ export const Step3Form = (props: Props) => {
                                 {item.subcategories.map((subItem) => (
                                     <li
                                         key={item.name + '_' + subItem.name}
-                                        className={subItem.status == true ? 'text-black' : 'text-grey'}
+                                        className={subItem.enabled == true ? 'text-black' : 'text-grey'}
                                     >
                                         {subItem.name}
                                     </li>
@@ -82,7 +83,10 @@ export const Step3Form = (props: Props) => {
                             className="presets-grid"
                             onClick={() => showModal(item.name, item.subcategories)}
                         >
-                            <Meta avatar={<DynamicIcon type={item.icon} className="PresetIcon" />} title={item.name} />
+                            <Meta
+                                avatar={<DynamicIcon type={getIconName(item.name)} className="PresetIcon" />}
+                                title={item.name}
+                            />
                         </Grid>
                     </Tooltip>
                 ))}
@@ -105,9 +109,9 @@ export const Step3Form = (props: Props) => {
                             <div key={modalTitle + '_' + item.name}>
                                 <Form.Item label={item.name}>
                                     <Switch
-                                        defaultChecked={item.status == true ? true : false}
+                                        defaultChecked={item.enabled == true ? true : false}
                                         onChange={(checked) => {
-                                            item.status = checked;
+                                            item.enabled = checked;
                                         }}
                                     />
                                 </Form.Item>

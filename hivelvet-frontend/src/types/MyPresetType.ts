@@ -1,8 +1,4 @@
-<?php
-
-declare(strict_types=1);
-
-/*
+/**
  * Hivelvet open source platform - https://riadvice.tn/
  *
  * Copyright (c) 2022 RIADVICE SUARL and by respective authors (see below).
@@ -20,24 +16,12 @@ declare(strict_types=1);
  * with Hivelvet; if not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Enum\Presets;
+import { PresetType } from './PresetType';
+import { SubCategoryType } from './SubCategoryType';
 
-use Enum\Enum;
-
-class LockSettings extends Enum
-{
-    final public const WEBCAMS      = 'webcams';
-    final public const MICROPHONES  = 'microphones';
-    final public const PRIVATE_CHAT = 'private_chat';
-    final public const PUBLIC_CHAT  = 'public_chat';
-    final public const SHARED_NOTES = 'shared_notes';
-    final public const LAYOUT       = 'layout';
-
-    public static string $WEBCAMS_TYPE = 'bool';
-    public static string $MICROPHONES_TYPE = 'bool';
-    public static string $PRIVATE_CHAT_TYPE = 'bool';
-    public static string $PUBLIC_CHAT_TYPE = 'bool';
-    public static string $SHARED_NOTES_TYPE = 'bool';
-    public static string $LAYOUT_TYPE = 'bool';
-
-}
+export type MyPresetType = {
+    id: number;
+    name: string;
+    categories: PresetType[];
+    // subcategories: SubCategoryType[];
+};

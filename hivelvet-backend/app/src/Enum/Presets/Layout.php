@@ -32,5 +32,11 @@ class Layout extends Enum
     final public const NAVIGATION_BAR = 'navigation_bar';
     final public const ACTIONS_BAR    = 'actions_bar';
 
-    public static string $icon = 'LayoutOutlined';
+
+    public static string $PRESENTATION_TYPE = 'bool';
+    public static string $PARTICIPANTS_TYPE = 'bool';
+    public static string $CHAT_TYPE = 'bool';
+    public static string $NAVIGATION_BAR_TYPE = 'bool';
+    public static string $ACTIONS_BAR_TYPE = 'bool';
+
 }

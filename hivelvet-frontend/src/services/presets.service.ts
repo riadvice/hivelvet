@@ -1,8 +1,4 @@
-<?php
-
-declare(strict_types=1);
-
-/*
+/**
  * Hivelvet open source platform - https://riadvice.tn/
  *
  * Copyright (c) 2022 RIADVICE SUARL and by respective authors (see below).
@@ -20,24 +16,32 @@ declare(strict_types=1);
  * with Hivelvet; if not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Enum\Presets;
+import axios from 'axios';
+import { apiRoutes } from '../routing/backend-config';
+class PresetsService {
+    add_preset(data) {
+        return axios.post(apiRoutes.ADD_PRESET_URL, {
+            data,
+        });
+    }
 
-use Enum\Enum;
+    collect_my_presets() {
+        return axios.get(apiRoutes.COLLECT_MY_PRESETS_URL);
+    }
 
-class LockSettings extends Enum
-{
-    final public const WEBCAMS      = 'webcams';
-    final public const MICROPHONES  = 'microphones';
-    final public const PRIVATE_CHAT = 'private_chat';
-    final public const PUBLIC_CHAT  = 'public_chat';
-    final public const SHARED_NOTES = 'shared_notes';
-    final public const LAYOUT       = 'layout';
-
-    public static string $WEBCAMS_TYPE = 'bool';
-    public static string $MICROPHONES_TYPE = 'bool';
-    public static string $PRIVATE_CHAT_TYPE = 'bool';
-    public static string $PUBLIC_CHAT_TYPE = 'bool';
-    public static string $SHARED_NOTES_TYPE = 'bool';
-    public static string $LAYOUT_TYPE = 'bool';
-
+    edit_subcategory_preset(data: object, id: number) {
+        return axios.put(apiRoutes.EDIT_PRESETS_SUBCATEGORIES_URL + id, {
+            data,
+        });
+    }
+    edit_preset(data: object, id: number) {
+        return axios.put(apiRoutes.EDIT_PRESETS_URL + id, {
+            data,
+        });
+    }
+    delete_preset(id: number) {
+        return axios.delete(apiRoutes.DELETE_PRESET_URL + id);
+    }
 }
+
+export default new PresetsService();
